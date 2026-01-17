@@ -24,15 +24,27 @@
             flex-direction: column;
             height: 100vh;
             padding: 15px;
+            max-width: 1400px;
+            margin: 0 auto;
         }
 
         h1 {
             text-align: center;
             margin-bottom: 15px;
-            font-size: 2.5em;
+            font-size: clamp(1.5em, 5vw, 2.5em);
             text-shadow: 3px 3px 6px rgba(0,0,0,0.7);
             color: #FFD700;
             animation: rainbow 3s ease-in-out infinite;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+
+            h1 {
+                margin-bottom: 10px;
+            }
         }
 
         @keyframes rainbow {
@@ -59,10 +71,11 @@
 
         .controls {
             display: flex;
+            flex-wrap: wrap;
             justify-content: center;
             align-items: center;
-            gap: 15px;
-            padding: 20px;
+            gap: 12px;
+            padding: 15px;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             border-radius: 20px;
             margin-top: 15px;
@@ -70,8 +83,8 @@
         }
 
         button {
-            padding: 14px 28px;
-            font-size: 18px;
+            padding: 12px 24px;
+            font-size: clamp(14px, 3vw, 18px);
             font-weight: bold;
             background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
             color: white;
@@ -81,6 +94,19 @@
             transition: all 0.3s;
             box-shadow: 0 6px 12px rgba(0,0,0,0.3);
             text-transform: uppercase;
+            white-space: nowrap;
+        }
+
+        @media (max-width: 768px) {
+            .controls {
+                gap: 8px;
+                padding: 12px;
+            }
+
+            button {
+                padding: 10px 18px;
+                font-size: 14px;
+            }
         }
 
         button:hover {
@@ -118,37 +144,98 @@
             width: 150px;
             height: 8px;
             cursor: pointer;
+            -webkit-appearance: none;
+            appearance: none;
+            background: rgba(255,255,255,0.3);
+            border-radius: 5px;
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            background: #FFD700;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        input[type="range"]::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            background: #FFD700;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            border: none;
         }
 
         #speedValue {
-            font-size: 20px;
+            font-size: clamp(16px, 3vw, 20px);
             font-weight: bold;
             color: #FFD700;
+            min-width: 40px;
+        }
+
+        @media (max-width: 768px) {
+            input[type="range"] {
+                width: 100px;
+            }
+
+            .speed-control {
+                gap: 8px;
+                padding: 8px 12px;
+            }
+
+            .speed-control label {
+                font-size: 14px;
+            }
         }
 
         .info-panel {
             position: absolute;
-            top: 20px;
-            right: 20px;
+            top: 10px;
+            right: 10px;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            padding: 20px;
-            border-radius: 20px;
-            min-width: 220px;
-            border: 4px solid #FFD700;
+            padding: 15px;
+            border-radius: 15px;
+            min-width: 180px;
+            border: 3px solid #FFD700;
             box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+            backdrop-filter: blur(10px);
         }
 
         .info-panel h3 {
-            margin-bottom: 15px;
+            margin-bottom: 10px;
             color: #FFD700;
-            font-size: 22px;
+            font-size: clamp(16px, 3vw, 22px);
             text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
         }
 
         .info-panel p {
-            margin: 10px 0;
-            font-size: 16px;
+            margin: 8px 0;
+            font-size: clamp(13px, 2.5vw, 16px);
             font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+            .info-panel:not(.mobile-layout) {
+                display: none !important;
+            }
+
+            .info-panel.mobile-layout {
+                position: static;
+                margin-bottom: 10px;
+                min-width: auto;
+                width: 100%;
+            }
+        }
+
+        @media (min-width: 769px) {
+            .mobile-layout {
+                display: none !important;
+            }
         }
 
         .season {
@@ -160,27 +247,49 @@
 
         .legend {
             position: absolute;
-            bottom: 20px;
-            left: 20px;
+            bottom: 10px;
+            left: 10px;
             background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-            padding: 20px;
-            border-radius: 20px;
-            border: 4px solid #FFD700;
+            padding: 15px;
+            border-radius: 15px;
+            border: 3px solid #FFD700;
             box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+            backdrop-filter: blur(10px);
+            max-width: 280px;
         }
 
         .legend h3 {
-            margin-bottom: 12px;
+            margin-bottom: 10px;
             color: #FFD700;
-            font-size: 20px;
+            font-size: clamp(16px, 3vw, 20px);
             text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
         }
 
         .legend p {
-            font-size: 14px;
-            margin: 8px 0;
-            line-height: 1.6;
+            font-size: clamp(11px, 2vw, 14px);
+            margin: 6px 0;
+            line-height: 1.4;
             font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+            .legend:not(.mobile-layout) {
+                display: none !important;
+            }
+
+            .legend.mobile-layout {
+                position: static;
+                margin-top: 10px;
+                max-width: 100%;
+            }
+
+            .legend p {
+                font-size: 12px;
+            }
+
+            .canvas-container {
+                flex-direction: column;
+            }
         }
     </style>
 </head>
@@ -188,10 +297,19 @@
     <div class="container">
         <h1>Why Do We Have Seasons? 🌍☀️</h1>
 
+        <!-- Mobile Info Panel (shown on small screens) -->
+        <div class="info-panel mobile-layout">
+            <h3>Right Now 🎯</h3>
+            <p class="season">Season: <span id="season-mobile">Spring</span></p>
+            <p>Where: <span id="hemisphere-mobile">Northern</span></p>
+            <p>Day: <span id="dayOfYear-mobile">0</span></p>
+        </div>
+
         <div class="canvas-container">
             <canvas id="orbitCanvas"></canvas>
 
-            <div class="info-panel">
+            <!-- Desktop Info Panel (hidden on mobile) -->
+            <div class="info-panel" style="display: block;">
                 <h3>Right Now 🎯</h3>
                 <p class="season">Season: <span id="season">Spring</span></p>
                 <p>Where: <span id="hemisphere">Northern</span></p>
@@ -199,25 +317,35 @@
                 <p>Earth's Tilt: 23.5°</p>
             </div>
 
-            <div class="legend">
+            <!-- Desktop Legend (hidden on mobile) -->
+            <div class="legend" style="display: block;">
                 <h3>Cool Facts! 🌟</h3>
                 <p>🌍 Earth is tilted like a leaning tower!</p>
-                <p>☀️ The tilt makes seasons, not how far we are from the Sun</p>
-                <p>🌞 Summer: Your side leans toward the Sun!</p>
-                <p>❄️ Winter: Your side leans away from the Sun</p>
+                <p>☀️ The tilt makes seasons, not distance!</p>
+                <p>🌞 Summer: Tilted toward Sun!</p>
+                <p>❄️ Winter: Tilted away from Sun!</p>
                 <p>🌸🍂 Spring & Fall: In between!</p>
             </div>
         </div>
 
+        <!-- Mobile Legend (shown on small screens) -->
+        <div class="legend mobile-layout">
+            <h3>Cool Facts! 🌟</h3>
+            <p>🌍 Earth is tilted like a leaning tower!</p>
+            <p>☀️ Tilt makes seasons, not distance!</p>
+            <p>🌞 Summer = tilted toward Sun</p>
+            <p>❄️ Winter = tilted away</p>
+        </div>
+
         <div class="controls">
             <button id="playPauseBtn">⏸️ Pause</button>
-            <button id="resetBtn">🔄 Start Over</button>
+            <button id="resetBtn">🔄 Reset</button>
             <div class="speed-control">
                 <label>Speed:</label>
                 <input type="range" id="speedSlider" min="1" max="10" value="5">
                 <span id="speedValue">5x</span>
             </div>
-            <button id="toggleHemisphere">🔁 Flip Earth</button>
+            <button id="toggleHemisphere">🔁 Flip</button>
         </div>
     </div>
 
@@ -225,12 +353,38 @@
         const canvas = document.getElementById('orbitCanvas');
         const ctx = canvas.getContext('2d');
 
-        // Set canvas size
+        // Set canvas size - responsive
         function resizeCanvas() {
             const container = canvas.parentElement;
-            canvas.width = Math.min(container.clientWidth - 40, 800);
-            canvas.height = Math.min(container.clientHeight - 40, 600);
+            const isMobile = window.innerWidth <= 768;
+
+            if (isMobile) {
+                // Mobile: make it more square and fill width
+                const size = Math.min(container.clientWidth - 20, container.clientHeight - 20, 500);
+                canvas.width = size;
+                canvas.height = size;
+            } else {
+                // Desktop: wider aspect ratio
+                canvas.width = Math.min(container.clientWidth - 40, 800);
+                canvas.height = Math.min(container.clientHeight - 40, 600);
+            }
+
+            // Update orbit parameters when canvas resizes
+            updateOrbitParams();
         }
+
+        let centerX, centerY, orbitRadiusX, orbitRadiusY;
+        const sunRadius = 40;
+        const earthRadius = 20;
+        const axialTilt = 23.5 * Math.PI / 180;
+
+        function updateOrbitParams() {
+            centerX = canvas.width / 2;
+            centerY = canvas.height / 2;
+            orbitRadiusX = Math.min(canvas.width, canvas.height) * 0.35;
+            orbitRadiusY = orbitRadiusX * 0.95;
+        }
+
         resizeCanvas();
         window.addEventListener('resize', resizeCanvas);
 
@@ -239,15 +393,6 @@
         let angle = 0; // Start at March equinox
         let speed = 0.005;
         let northernHemisphere = true;
-
-        // Orbit parameters
-        const centerX = canvas.width / 2;
-        const centerY = canvas.height / 2;
-        const orbitRadiusX = Math.min(canvas.width, canvas.height) * 0.35;
-        const orbitRadiusY = orbitRadiusX * 0.95; // Slightly elliptical for visual interest
-        const sunRadius = 40;
-        const earthRadius = 20;
-        const axialTilt = 23.5 * Math.PI / 180;
 
         // Season calculations
         function getSeason(angle) {
@@ -512,14 +657,28 @@
 
             drawEarth(earthX, earthY);
 
-            // Update info panel
+            // Update info panel (both desktop and mobile)
             const season = getSeason(angle);
+            const hemisphere = northernHemisphere ? 'Northern' : 'Southern';
+            const dayOfYear = Math.floor((angle / (Math.PI * 2)) * 365);
+
+            // Update desktop
             document.getElementById('season').textContent = season.name;
             document.getElementById('season').style.color = season.color;
-            document.getElementById('hemisphere').textContent = northernHemisphere ? 'Northern' : 'Southern';
-
-            const dayOfYear = Math.floor((angle / (Math.PI * 2)) * 365);
+            document.getElementById('hemisphere').textContent = hemisphere;
             document.getElementById('dayOfYear').textContent = dayOfYear;
+
+            // Update mobile
+            const seasonMobile = document.getElementById('season-mobile');
+            const hemisphereMobile = document.getElementById('hemisphere-mobile');
+            const dayMobile = document.getElementById('dayOfYear-mobile');
+
+            if (seasonMobile) {
+                seasonMobile.textContent = season.name;
+                seasonMobile.style.color = season.color;
+            }
+            if (hemisphereMobile) hemisphereMobile.textContent = hemisphere;
+            if (dayMobile) dayMobile.textContent = dayOfYear;
 
             if (isPlaying) {
                 angle += speed;
